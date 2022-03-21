@@ -5,6 +5,7 @@ const cors = require("cors")
 const auth = require("./middleware/auth");
 const usersRouter = require("./routes/users");
 const eventsRouter = require("./routes/events");
+const topicsRouter = require("./routes/topics");
 
 const express = require("express");
 
@@ -18,7 +19,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(usersRouter);
-app.use(eventsRouter);
+app.use(auth, eventsRouter);
+app.use(auth, topicsRouter);
 
 app.post("/welcome", auth, (req, res) => {
   res.status(200).send("Welcome to auth routes");

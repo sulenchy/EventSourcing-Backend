@@ -84,7 +84,7 @@ router.put('/event/:id', async (req, res) => {
 		res.status(200).json(event)
 	} catch {
 		res.status(404)
-		res.send({ error: "Post doesn't exist!" })
+		res.send({ error: "Evvent doesn't exist!" })
 	}
 })
 
@@ -95,7 +95,7 @@ router.delete('/event/:id', async (req, res) => {
 		res.status(204).json([])
 	} catch {
 		res.status(404)
-		res.send({ error: "Post doesn't exist!" })
+		res.send({ error: "Event doesn't exist!" })
 	}
 })
 
