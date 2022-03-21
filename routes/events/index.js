@@ -25,7 +25,14 @@ router.get('/event/:id', async (req, res) => {
 // get all events from myFirstDatabase
 router.get('/events', async (req, res) => {
     try {
-        const events = await Event.find();
+        const {topics} = req.query;
+        let event = null;
+        if (topics) {
+            const regex = new RegExp(topics, 'i') 
+            events = await Event.find({topics: { $regex: regex } });
+        } else {
+            events = await Event.find();
+        }
         return res.status(200).json(events);
     } catch(err) {
         console.log(err);
