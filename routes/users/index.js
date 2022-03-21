@@ -1,5 +1,10 @@
 var express = require("express");
 const dotenv = require('dotenv');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const User = require("../../model/user");
+
 var router = express.Router();
 
 // Register

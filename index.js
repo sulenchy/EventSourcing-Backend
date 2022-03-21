@@ -1,12 +1,10 @@
 const dotenv = require("dotenv");
 const database = require("./config/database");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const cors = require("cors") 
 
 const auth = require("./middleware/auth");
-const User = require("./model/user");
 const usersRouter = require("./routes/users");
+const eventsRouter = require("./routes/events");
 
 const express = require("express");
 
@@ -20,6 +18,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(usersRouter);
+app.use(eventsRouter);
 
 app.post("/welcome", auth, (req, res) => {
   res.status(200).send("Welcome to auth routes");
