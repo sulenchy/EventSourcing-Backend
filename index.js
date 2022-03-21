@@ -3,6 +3,7 @@ const database = require("./config/database");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const auth = require("./middleware/auth");
 const User = require("./model/user");
 
 const express = require("express");
@@ -101,6 +102,10 @@ app.post("/login", async (req, res) => {
         console.log(err);
     }  
   // Our login logic ends here
+});
+
+app.post("/welcome", auth, (req, res) => {
+  res.status(200).send("Welcome to auth routes");
 });
 
 app.listen(PORT, console.log('server started at port', PORT));
