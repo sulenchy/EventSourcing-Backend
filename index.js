@@ -18,12 +18,12 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.get("/", auth, (req, res) => {
+  res.status(200).send("Welcome to event sourcing api");
+});
 app.use(usersRouter);
 app.use(auth, eventsRouter);
 app.use(auth, topicsRouter);
 
-app.post("/welcome", auth, (req, res) => {
-  res.status(200).send("Welcome to auth routes");
-});
 
 app.listen(PORT, console.log('server started at port', PORT));

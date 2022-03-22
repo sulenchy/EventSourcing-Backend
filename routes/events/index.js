@@ -45,10 +45,9 @@ router.post('/event/new', async (req, res) => {
         const token = req.header('x-access-token');
         const decodedToken = jwt.decode(token);
         //get user input from
-        const { title, description, topics } = req.body;
+        const { title, description, topics, address } = req.body;
 
-        if (!(title && description && topics)) {
-            console.log({title, description, topics, token, decodedToken});
+        if (!(title && description && topics, address)) {
             res.status(400).send("All input is required");
         }
 
@@ -62,6 +61,7 @@ router.post('/event/new', async (req, res) => {
             title: req.body.title,
             description: req.body.description,
             topics: req.body.topics,
+            address: req.body.address,
             user: decodedToken.email
         });
         res.status(201).json(newEvent);
